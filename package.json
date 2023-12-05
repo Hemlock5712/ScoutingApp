@@ -36,6 +36,7 @@
 	"type": "module",
 	"dependencies": {
 		"fflate": "^0.8.1",
+		"kolorist": "^1.8.0",
 		"qr-scanner": "^1.4.2",
 		"qrcode": "^1.5.3",
 		"workbox-precaching": "^7.0.0",
