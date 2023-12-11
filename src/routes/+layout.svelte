@@ -2,6 +2,6 @@
 	import '../style.css';
 </script>
 
-<main class="h-screen">
+<main class="min-h-screen">
 	<slot />
 </main>

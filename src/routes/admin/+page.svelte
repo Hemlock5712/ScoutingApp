@@ -26,6 +26,7 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y-media-has-caption -->
 <video bind:this={videoRef}></video>
 
 {#if scannedData}
