@@ -18,7 +18,7 @@
 <button
 	class="btn btn-md variant-outline-tertiary"
 	on:click={() => {
-		matchPhase.set(MatchPhase.PreMatch);
+		matchPhase.set(MatchPhase.Teleop);
 	}}>Teleop</button
 >
 <button
