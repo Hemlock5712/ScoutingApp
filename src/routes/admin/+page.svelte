@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 
 	let videoRef: HTMLVideoElement;
-	let scannedData: string;
+	let scannedData: any;
 
 	export let data;
 	let { supabase, session } = data;
@@ -32,14 +32,14 @@
 		const data = await fetch('/admin/api/upload', {
 			method: 'POST',
 			body: JSON.stringify(scannedData)
-		}).then((res) => res.json());
-		console.log(data);
-		scannedData = '';
+		});
+		console.log(data.status);
+		scannedData = undefined;
 	}
 </script>
 
 {#if session}
-	<div class="w-full flex justify-center">
+	<div class="w-full flex items-center flex-col">
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video bind:this={videoRef} class="w-full max-w-lg border rounded-lg"></video>
 

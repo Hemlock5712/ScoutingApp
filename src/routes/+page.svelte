@@ -7,7 +7,7 @@
 	import PostMatch from '$lib/gameStates/PostMatch.svelte';
 </script>
 
-<div class="px-4 h-full w-full max-w-xl">
+<div class="px-4 h-full w-full max-w-2xl">
 	{#if $matchPhase === MatchPhase.PreMatch}
 		<PreMatch />
 	{:else if $matchPhase === MatchPhase.Autonomous}
