@@ -6,6 +6,9 @@
 	let videoRef: HTMLVideoElement;
 	let scannedData: string;
 
+	export let data;
+	let { supabase, session } = data;
+
 	onMount(() => {
 		const scanner = new QrScanner(
 			videoRef!,
@@ -24,13 +27,32 @@
 		);
 		scanner.start();
 	});
+
+	async function sendToServer() {
+		const data = await fetch('/admin/api/upload', {
+			method: 'POST',
+			body: JSON.stringify(scannedData)
+		}).then((res) => res.json());
+		console.log(data);
+		scannedData = '';
+	}
 </script>
 
-<!-- svelte-ignore a11y-media-has-caption -->
-<video bind:this={videoRef}></video>
+{#if session}
+	<div class="w-full flex justify-center">
+		<!-- svelte-ignore a11y-media-has-caption -->
+		<video bind:this={videoRef} class="w-full max-w-lg border rounded-lg"></video>
 
-{#if scannedData}
-	<pre>
+		{#if scannedData}
+			<button class="btn btn-lg variant-filled-secondary" on:click={sendToServer}
+				>Send to Server</button
+			>
+			<pre>
         <code>{JSON.stringify(scannedData, null, 2)}</code>
     </pre>
+		{/if}
+	</div>
+{:else}
+	<p>You must be logged in to view this page.</p>
+	<a class="btn btn-lg variant-filled-secondary" href="/admin/auth/login">Login</a>
 {/if}

@@ -4,6 +4,12 @@
 </script>
 
 <div class="w-full flex flex-col gap-4">
+	<button
+		class="btn btn-md variant-outline-tertiary"
+		on:click={() => {
+			matchPhase.set(MatchPhase.PreMatch);
+		}}>Pre Match</button
+	>
 	<h1 class="text-2xl text-center">{$teamNumber} - Match {$matchNumber}</h1>
 	<h1 class="text-2xl text-center">Autonomous</h1>
 	<div class="grid grid-cols-2">

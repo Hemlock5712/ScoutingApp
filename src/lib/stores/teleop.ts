@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { defaultTeleop, type TeleopState } from '../game';
 
-const defaultValue = defaultTeleop;
+const defaultValue = {...defaultTeleop};
 
 const initialValue = defaultValue;
 

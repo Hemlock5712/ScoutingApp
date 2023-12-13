@@ -16,6 +16,12 @@
 </script>
 
 <button
+	class="btn btn-md variant-outline-tertiary"
+	on:click={() => {
+		matchPhase.set(MatchPhase.PreMatch);
+	}}>Teleop</button
+>
+<button
 	class="btn btn-2xl variant-filled-secondary w-full"
 	on:click={() => {
 		generateQRCode({
@@ -41,11 +47,11 @@
 		disabled={!canContinue}
 		class:variant-ghost-secondary={!canContinue}
 		on:click={() => {
-			matchPhase.set(MatchPhase.PreMatch);
-			autonomous.set(defaultAutonomous);
-			teleop.set(defaultTeleop);
-			matchNumber.update((n) => n + 1);
+			autonomous.set({ ...defaultAutonomous });
+			teleop.set({ ...defaultTeleop });
+			matchNumber.update((n) => (parseInt(n) + 1).toString());
 			teamNumber.set('');
+			matchPhase.set(MatchPhase.PreMatch);
 		}}>Finish Match</button
 	>
 {/if}
