@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Match2022 {
+  eventName        String  @default("")
+  matchNumber      Int
+  teamNumber       Int
+  scouterName      String
+  autoTaxi         Boolean
+  autoLow          Int
+  autoLowMissed    Int
+  autoHigh         Int
+  autoHighMissed   Int
+  teleopLow        Int
+  teleopLowMissed  Int
+  teleopHigh       Int
+  teleopHighMissed Int
+  climbAttempt     Boolean
+  climbLow         Boolean
+  climbMid         Boolean
+  climbHigh        Boolean
+  climbTraverse    Boolean
+  climbTime        Float?
+
+  @@id([eventName, matchNumber, teamNumber])
+}

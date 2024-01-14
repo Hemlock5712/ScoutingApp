@@ -29,6 +29,7 @@
 		"postcss": "^8.4.32",
 		"prettier": "^3.0.0",
 		"prettier-plugin-svelte": "^3.0.0",
+		"prisma": "^5.7.0",
 		"supabase": "^1.123.4",
 		"svelte": "^4.2.8",
 		"svelte-check": "^3.6.0",
@@ -40,6 +41,7 @@
 	"type": "module",
 	"dependencies": {
 		"@google-cloud/local-auth": "^3.0.0",
+		"@prisma/client": "5.7.0",
 		"@supabase/auth-helpers-sveltekit": "^0.10.7",
 		"@supabase/auth-ui-shared": "^0.1.8",
 		"@supabase/auth-ui-svelte": "^0.2.8",
