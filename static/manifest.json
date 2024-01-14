@@ -1,0 +1,74 @@
+{
+    "short_name": "Gray Matter Scouting",
+    "name": "Gray Matter Scouting App",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#FFFFFF",
+    "background_color": "#092B4A",
+    "icons": [
+        {
+            "src": "/icon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Scouter View",
+            "short_name": "Scout",
+            "description": "Scout a match",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "/icon-128.png",
+                    "sizes": "128x128",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/icon-256.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/icon-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        },
+        {
+            "name": "Admin View",
+            "short_name": "Admin",
+            "description": "Upload data to the server",
+            "url": "/admin",
+            "icons": [
+                {
+                    "src": "/icon-128.png",
+                    "sizes": "128x128",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/icon-256.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/icon-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        }
+    ]
+}

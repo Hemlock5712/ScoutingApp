@@ -33,3 +33,24 @@ model Match2022 {
 
   @@id([eventName, matchNumber, teamNumber])
 }
+
+model Match2024 {
+  eventName         String  @default("")
+  matchNumber       Int
+  teamNumber        Int
+  scouterName       String
+  autoAmpHit        Int
+  autoAmpMissed     Int
+  autoSpeakerHit    Int
+  autoSpeakerMissed Int
+  autoLeave         Boolean
+  teleSpeakerHit    Int
+  teleSpeakerMissed Int
+  teleAmpHit        Int
+  teleAmpMissed     Int
+  climbAttempt      Boolean
+  climbSuccess      Boolean
+  trap              Int
+
+  @@id([eventName, matchNumber, teamNumber])
+}

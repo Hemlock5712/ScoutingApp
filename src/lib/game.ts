@@ -1,35 +1,21 @@
-export const defaultAutonomous = {
-	taxi: false,
-	low: 0,
-	lowMissed: 0,
-	high: 0,
-	highMissed: 0
-};
+export const defaultAutonomous = Object.freeze({
+	leave: false,
+	speakerHit: 0,
+	speakerMiss: 0,
+	ampHit: 0,
+	ampMiss: 0
+});
 
 export type AutonomousState = typeof defaultAutonomous;
 
-export type TeleopState = {
-	low: number;
-	lowMissed: number;
-	high: number;
-	highMissed: number;
-	climbAttempt: boolean;
-	climbLow: boolean;
-	climbMid: boolean;
-	climbHigh: boolean;
-	climbTraverse: boolean;
-	climbTime: number | undefined;
-};
-
-export const defaultTeleop: TeleopState = {
-	low: 0,
-	lowMissed: 0,
-	high: 0,
-	highMissed: 0,
+export const defaultTeleop = Object.freeze({
+	speakerHit: 0,
+	speakerMiss: 0,
+	ampHit: 0,
+	ampMiss: 0,
 	climbAttempt: false,
-	climbLow: false,
-	climbMid: false,
-	climbHigh: false,
-	climbTraverse: false,
-	climbTime: undefined
-};
+	climbSuccess: false,
+	trap: 0
+});
+
+export type TeleopState = typeof defaultTeleop;
