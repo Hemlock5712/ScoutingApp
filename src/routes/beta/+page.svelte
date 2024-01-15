@@ -18,6 +18,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>(Beta) Gray Matter Scouting</title>
+</svelte:head>
+
 <AppLayout>
 	<svelte:component this={matchPhases[$matchPhase]} />
 </AppLayout>
