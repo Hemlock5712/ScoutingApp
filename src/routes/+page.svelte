@@ -1,20 +1,27 @@
 <script lang="ts">
-	import PreMatch from '$lib/gameStates/PreMatch.svelte';
-	import Autonomous from '$lib/gameStates/Autonomous.svelte';
+	import AppLayout from '$lib/components/layout/AppLayout.svelte';
+	import PreEvent from '$lib/gameStates/beta/PreEvent.svelte';
+	import PreMatch from '$lib/gameStates/beta/PreMatch.svelte';
+	import Autonomous from '$lib/gameStates/beta/Autonomous.svelte';
+	import Teleop from '$lib/gameStates/beta/Teleop.svelte';
+	import PostMatch from '$lib/gameStates/beta/PostMatch.svelte';
+
 	import { matchPhase } from '$lib/stores';
 	import { MatchPhase } from '$lib/types';
-	import Teleop from '$lib/gameStates/Teleop.svelte';
-	import PostMatch from '$lib/gameStates/PostMatch.svelte';
+
+	const matchPhases = {
+		[MatchPhase.PreEvent]: PreEvent,
+		[MatchPhase.PreMatch]: PreMatch,
+		[MatchPhase.Autonomous]: Autonomous,
+		[MatchPhase.Teleop]: Teleop,
+		[MatchPhase.PostMatch]: PostMatch
+	};
 </script>
 
-<div class="px-4 h-full w-full max-w-2xl">
-	{#if $matchPhase === MatchPhase.PreMatch}
-		<PreMatch />
-	{:else if $matchPhase === MatchPhase.Autonomous}
-		<Autonomous />
-	{:else if $matchPhase === MatchPhase.Teleop}
-		<Teleop />
-	{:else if $matchPhase === MatchPhase.PostMatch}
-		<PostMatch />
-	{/if}
-</div>
+<svelte:head>
+	<title>(Beta) Gray Matter Scouting</title>
+</svelte:head>
+
+<AppLayout>
+	<svelte:component this={matchPhases[$matchPhase]} />
+</AppLayout>
