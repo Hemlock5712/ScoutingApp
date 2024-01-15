@@ -9,6 +9,7 @@
 	export let nextPage: MatchPhase | undefined = undefined;
 
 	const matchPhaseStringMap = {
+		[MatchPhase.PreEvent]: 'Pre-Event',
 		[MatchPhase.PreMatch]: 'Setup',
 		[MatchPhase.Autonomous]: 'Auto',
 		[MatchPhase.Teleop]: 'Teleop',

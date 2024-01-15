@@ -7,7 +7,8 @@
 	export let customNavigationAction: () => void = () => {};
 
 	const matchPhaseStringMap = {
-		[MatchPhase.PreMatch]: 'Setup',
+		[MatchPhase.PreEvent]: 'Pre-Event',
+		[MatchPhase.PreMatch]: 'Match Setup',
 		[MatchPhase.Autonomous]: 'Auto',
 		[MatchPhase.Teleop]: 'Teleop',
 		[MatchPhase.PostMatch]: 'Upload'
