@@ -4,6 +4,8 @@ import type { Config } from 'tailwindcss';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import tailwindForms from '@tailwindcss/forms';
 
+import { myCustomTheme } from './theme';
+
 export default {
 	content: [
 		'src/app.html',
@@ -19,7 +21,7 @@ export default {
 	},
 	plugins: [
 		skeleton({
-			themes: { preset: ['gold-nouveau'] }
+			themes: { preset: ['modern'], custom: [myCustomTheme] }
 		}),
 		tailwindForms
 	]

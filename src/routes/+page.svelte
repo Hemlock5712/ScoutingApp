@@ -4,6 +4,7 @@
 	import PreMatch from '$lib/gameStates/beta/PreMatch.svelte';
 	import Autonomous from '$lib/gameStates/beta/Autonomous.svelte';
 	import Teleop from '$lib/gameStates/beta/Teleop.svelte';
+	import Endgame from '$lib/gameStates/beta/Endgame.svelte';
 	import PostMatch from '$lib/gameStates/beta/PostMatch.svelte';
 
 	import { matchPhase } from '$lib/stores';
@@ -14,6 +15,7 @@
 		[MatchPhase.PreMatch]: PreMatch,
 		[MatchPhase.Autonomous]: Autonomous,
 		[MatchPhase.Teleop]: Teleop,
+		[MatchPhase.Endgame]: Endgame,
 		[MatchPhase.PostMatch]: PostMatch
 	};
 </script>

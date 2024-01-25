@@ -11,6 +11,7 @@
 		[MatchPhase.PreMatch]: 'Match Setup',
 		[MatchPhase.Autonomous]: 'Auto',
 		[MatchPhase.Teleop]: 'Teleop',
+		[MatchPhase.Endgame]: 'Endgame',
 		[MatchPhase.PostMatch]: 'Upload'
 	};
 </script>

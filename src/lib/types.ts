@@ -11,6 +11,7 @@ export enum MatchPhase {
 	PreMatch = 'PreMatch',
 	Autonomous = 'Autonomous',
 	Teleop = 'Teleop',
+	Endgame = 'Endgame',
 	PostMatch = 'PostMatch'
 }
 
