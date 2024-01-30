@@ -51,6 +51,7 @@ model Match2024 {
   teleAmpMissed              Int
   climb                      Boolean
   park                       Boolean
+  harmony                    Boolean
   trap                       Int
   trapMiss                   Int
   sourcePickup               Boolean

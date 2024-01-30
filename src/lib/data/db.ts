@@ -23,6 +23,7 @@ export const writeMatch = async (match: MatchState<AutonomousState, TeleopState>
 				autoSpeakerHit: autonomous.speakerHit,
 				autoSpeakerMissed: autonomous.speakerMiss,
 				autoLeave: autonomous.leave,
+				autoPickedUpFromMiddle: autonomous.pickedUpFromMiddle,
 
 				// Teleop
 				teleSpeakerHit: teleop.speakerHit,
@@ -31,7 +32,15 @@ export const writeMatch = async (match: MatchState<AutonomousState, TeleopState>
 				teleAmpMissed: teleop.ampMiss,
 				climb: teleop.climb,
 				park: teleop.park,
-				trap: teleop.trap
+				harmony: teleop.harmony,
+				humanPlayerAtAmp: teleop.humanPlayerAtAmp,
+				humanPlayerHighNotesHit: teleop.humanPlayerHighNotesHit,
+				humanPlayerHighNotesMissed: teleop.humanPlayerHighNotesMiss,
+				sourcePickup: teleop.sourcePickup,
+				floorPickup: teleop.floorPickup,
+				trap: teleop.trap,
+				trapMiss: teleop.trapMiss,
+				notes: teleop.notes
 			}
 		});
 
