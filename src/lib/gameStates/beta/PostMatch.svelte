@@ -14,6 +14,7 @@
 	} from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { defaultAutonomous, defaultTeleop } from '../../game';
+	import { addMatchToStore } from '$lib/data/webMatchStorage';
 
 	let qrData: string | undefined;
 	let canContinue = false;
@@ -26,13 +27,20 @@
 			autonomous: $autonomous,
 			teleop: $teleop
 		});
+		addMatchToStore({
+			teamNumber: $teamNumber,
+			matchNumber: $matchNumber,
+			scouterName: $scouterName,
+			autonomous: $autonomous,
+			teleop: $teleop
+		});
 		setTimeout(() => {
 			canContinue = true;
 		}, 10000);
 	});
 </script>
 
-<PageHeader headerText="Upload" previousPage={MatchPhase.Teleop} />
+<PageHeader headerText="Upload" previousPage={MatchPhase.Endgame} />
 <PageLayout
 	nextPage={MatchPhase.PreMatch}
 	disabledNavigation={!canContinue}

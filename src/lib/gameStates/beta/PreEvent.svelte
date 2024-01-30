@@ -2,12 +2,17 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PageLayout from '$lib/components/layout/PageLayout.svelte';
 	import { MatchPhase, type ScheduledMatch } from '$lib/types';
-	import { scheduledMatches } from '$lib/stores';
+	import { scheduledMatches, scoutedTeam } from '$lib/stores';
 	import { onMount } from 'svelte';
+	import { clearStore } from '$lib/data/webMatchStorage';
+	import ConfirmButton from '$lib/components/ConfirmButton.svelte';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	import RadioButton from '../../components/RadioButton.svelte';
 
 	let serverEventCode = '';
 	let text = '';
-	let pulledMatches = false;
+
+	const toastStore = getToastStore();
 
 	const getEventCodeFromServer = async () => {
 		const response = await fetch('/admin/api/activeEvent');
@@ -36,8 +41,6 @@
 	onMount(async () => {
 		await getEventCodeFromServer();
 		const activeEventLocal = getEventCodeFromLocalStorage();
-		console.log(activeEventLocal);
-		console.log(serverEventCode);
 		if (serverEventCode !== activeEventLocal) {
 			text = 'Local event does not match server. Pulling server information.';
 			console.log(
@@ -45,7 +48,10 @@
 			);
 			const schedule = await getEventScheduleFromServer();
 			scheduledMatches.set(schedule);
-			pulledMatches = true;
+			toastStore.trigger({
+				message: `Pulled ${schedule.length} matches from server`,
+				timeout: 10000
+			});
 			localStorage.setItem('activeEvent', serverEventCode);
 		}
 	});
@@ -55,16 +61,37 @@
 <PageLayout nextPage={MatchPhase.PreMatch}>
 	<!-- Components for the page go here -->
 	<p>{text}</p>
+	<ConfirmButton
+		buttonText="Clear Scouted Matches"
+		onConfirm={async () => {
+			await clearStore();
+			toastStore.trigger({
+				message: 'All matches have been cleared',
+				timeout: 5000,
+				background: 'variant-filled-success'
+			});
+		}}
+		>Are you sure you want to clear all scouted matches? Make sure this is only done after all
+		matches are scanned!</ConfirmButton
+	>
 	<button
 		class="btn btn-lg variant-filled-primary"
 		on:click={async () => {
 			const schedule = await getEventScheduleFromServer();
 			scheduledMatches.set(schedule);
-			pulledMatches = true;
+			toastStore.trigger({
+				message: `Pulled ${schedule.length} matches from server`,
+				timeout: 10000,
+				background: 'variant-filled-success'
+			});
 		}}>Pull match schedule</button
 	>
-	{#if pulledMatches}
-		<p>Matches Pulled</p>
-		<p>Match count: {$scheduledMatches.length}</p>
-	{/if}
+	<RadioButton
+		buttons={['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']}
+		buttonText={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']}
+		on:select={(e) => {
+			scoutedTeam.set(e.detail.value);
+		}}
+		selected={$scoutedTeam}
+	/>
 </PageLayout>

@@ -4,16 +4,22 @@
 
 	export let label: string = '';
 	export let buttons: string[] = [];
+	export let buttonText: string[] = buttons;
 	let isButtonSelected: boolean[] = buttons.map(() => false);
 	export let selected: string = '';
 
 	const dispatch = createEventDispatcher();
 
+	onMount(() => {
+		if (selected !== '') {
+			const buttonIndex = buttons.indexOf(selected);
+			isButtonSelected[buttonIndex] = true;
+		}
+	});
+
 	$: {
 		selected = buttons[isButtonSelected.indexOf(true)];
 	}
-
-	onMount(() => {});
 </script>
 
 <div class="flex flex-col gap-2">
@@ -24,7 +30,7 @@
 		{#each buttons as button, i}
 			<!-- <ToggleButton label={button} bind:value={selected} /> -->
 			<ToggleButton
-				label={button}
+				label={buttonText[i]}
 				value={isButtonSelected[i]}
 				on:toggled={(value) => {
 					isButtonSelected = isButtonSelected.map(() => false);
