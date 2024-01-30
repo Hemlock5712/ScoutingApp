@@ -38,8 +38,8 @@ export type TeleopState = {
 	speakerMiss: number;
 	ampHit: number;
 	ampMiss: number;
-	climbAttempt: boolean;
-	climbSuccess: boolean;
+	climb: boolean;
+	park: boolean;
 	trap: number;
 	trapMiss: number;
 	sourcePickup: boolean;

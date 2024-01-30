@@ -18,6 +18,4 @@
 	<HitMiss label="Speaker" bind:hit={$teleop.speakerHit} bind:miss={$teleop.speakerMiss} />
 	<HitMiss label="Amp" bind:hit={$teleop.ampHit} bind:miss={$teleop.ampMiss} />
 	<HitMiss label="Trap" bind:hit={$teleop.trap} bind:miss={$teleop.trapMiss} />
-	<ToggleButton label="Attempted Climb" bind:value={$teleop.climbAttempt} />
-	<ToggleButton label="Climbed" bind:value={$teleop.climbSuccess} />
 </PageLayout>

@@ -19,8 +19,8 @@
 		on:select={(event) => {
 			teleop.set({
 				...$teleop,
-				climbSuccess: event.detail.value === 'Climb',
-				climbAttempt: event.detail.value !== 'Park'
+				climb: event.detail.value === 'Climb',
+				park: event.detail.value === 'Park' || event.detail.value === 'Climb'
 			});
 		}}
 	/>
@@ -31,7 +31,7 @@
 			bind:miss={$teleop.humanPlayerHighNotesMiss}
 		/>
 	{/if}
-	{#if $teleop.climbSuccess}
+	{#if $teleop.climb}
 		<ToggleButton label="Harmony" bind:value={$teleop.harmony} />
 	{/if}
 	<TextArea title="Notes" bind:value={$teleop.notes} />

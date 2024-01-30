@@ -10,9 +10,26 @@ export const writeData = async (matchData: MatchState<AutonomousState, TeleopSta
 		ampMiss: autoAmpMiss,
 		speakerHit: autoSpeakerHit,
 		speakerMiss: autoSpeakerMiss,
-		leave: autoLeave
+		leave: autoLeave,
+		pickedUpFromMiddle: autoPickedUpFromMiddle
 	} = autonomous;
-	const { ampHit, ampMiss, speakerHit, speakerMiss, climbAttempt, climbSuccess, trap } = teleop;
+	const {
+		ampHit,
+		ampMiss,
+		speakerHit,
+		speakerMiss,
+		climb,
+		park,
+		harmony,
+		trap,
+		trapMiss,
+		sourcePickup,
+		floorPickup,
+		humanPlayerAtAmp,
+		humanPlayerHighNotesHit,
+		humanPlayerHighNotesMiss,
+		notes
+	} = teleop;
 	const data = [
 		matchNumber,
 		teamNumber,
@@ -22,13 +39,22 @@ export const writeData = async (matchData: MatchState<AutonomousState, TeleopSta
 		autoSpeakerMiss,
 		autoAmpHit,
 		autoAmpMiss,
+		autoPickedUpFromMiddle,
 		speakerHit,
 		speakerMiss,
 		ampHit,
 		ampMiss,
 		trap,
-		climbAttempt,
-		climbSuccess
+		trapMiss,
+		park,
+		climb,
+		harmony,
+		humanPlayerAtAmp,
+		humanPlayerHighNotesHit,
+		humanPlayerHighNotesMiss,
+		sourcePickup,
+		floorPickup,
+		notes
 	].map((i) => i?.toString() ?? '');
 	await writeRow('Raw Data!A1:R1', data);
 	await writeMatch(matchData);

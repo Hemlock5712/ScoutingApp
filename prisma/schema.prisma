@@ -35,22 +35,30 @@ model Match2022 {
 }
 
 model Match2024 {
-  eventName         String  @default("")
-  matchNumber       Int
-  teamNumber        Int
-  scouterName       String
-  autoAmpHit        Int
-  autoAmpMissed     Int
-  autoSpeakerHit    Int
-  autoSpeakerMissed Int
-  autoLeave         Boolean
-  teleSpeakerHit    Int
-  teleSpeakerMissed Int
-  teleAmpHit        Int
-  teleAmpMissed     Int
-  climbAttempt      Boolean
-  climbSuccess      Boolean
-  trap              Int
+  eventName                  String  @default("")
+  matchNumber                Int
+  teamNumber                 Int
+  scouterName                String
+  autoAmpHit                 Int
+  autoAmpMissed              Int
+  autoSpeakerHit             Int
+  autoSpeakerMissed          Int
+  autoLeave                  Boolean
+  autoPickedUpFromMiddle     Int
+  teleSpeakerHit             Int
+  teleSpeakerMissed          Int
+  teleAmpHit                 Int
+  teleAmpMissed              Int
+  climb                      Boolean
+  park                       Boolean
+  trap                       Int
+  trapMiss                   Int
+  sourcePickup               Boolean
+  floorPickup                Boolean
+  humanPlayerAtAmp           Boolean
+  humanPlayerHighNotesHit    Int
+  humanPlayerHighNotesMissed Int
+  notes                      String
 
   @@id([eventName, matchNumber, teamNumber])
 }
