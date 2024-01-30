@@ -6,7 +6,8 @@
 
 	import { MatchPhase } from '$lib/types';
 	import { teleop } from '$lib/stores';
-	import RadioButton from '../../components/RadioButton.svelte';
+	import RadioButton from '$lib/components/RadioButton.svelte';
+	import TextArea from '$lib/components/TextArea.svelte';
 </script>
 
 <PageHeader headerText="Endgame" previousPage={MatchPhase.Teleop} />
@@ -33,4 +34,5 @@
 	{#if $teleop.climbSuccess}
 		<ToggleButton label="Harmony" bind:value={$teleop.harmony} />
 	{/if}
+	<TextArea title="Notes" bind:value={$teleop.notes} />
 </PageLayout>
