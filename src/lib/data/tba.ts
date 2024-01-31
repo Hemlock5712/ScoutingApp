@@ -59,3 +59,42 @@ export const simplifyMatches = (matches: EventMatches) => {
 			blue: match.alliances.blue.team_keys.map((t) => t.slice(3))
 		}));
 };
+
+const Team = z.object({
+	key: z.string(),
+	team_number: z.number(),
+	nickname: z.string()
+});
+
+type Team = z.infer<typeof Team>;
+
+export const getTeam = async (teamNumber: string): Promise<Team> => {
+	const response = await fetch(`${BASE_URL}/team/frc${teamNumber}`, {
+		headers: {
+			'X-TBA-Auth-Key': TBA_KEY
+		}
+	});
+	const data = await response.json();
+	return Team.parse(data);
+};
+
+const Media = z.object({
+	type: z.string(),
+	foreign_key: z.string(),
+	preferred: z.boolean(),
+	direct_url: z.string(),
+	view_url: z.string()
+});
+
+type Media = z.infer<typeof Media>;
+
+export const getTeamMedia = async (teamNumber: string): Promise<Media[]> => {
+	const response = await fetch(`${BASE_URL}/team/frc${teamNumber}/media/2023`, {
+		headers: {
+			'X-TBA-Auth-Key': TBA_KEY
+		}
+	});
+	const data = await response.json();
+	console.log(data);
+	return z.array(Media).parse(data);
+};

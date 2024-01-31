@@ -47,3 +47,24 @@ export const writeMatch = async (match: MatchState<AutonomousState, TeleopState>
 		console.log(writtenData);
 	}
 };
+
+export const getTeamMatches = async (teamNumber: string) => {
+	const matches = await prisma.match2024.findMany({
+		where: {
+			teamNumber: parseInt(teamNumber),
+			eventName: EVENT_NAME
+		}
+	});
+
+	return matches;
+};
+
+export const getEventMatches = async () => {
+	const matches = await prisma.match2024.findMany({
+		where: {
+			eventName: EVENT_NAME
+		}
+	});
+
+	return matches;
+};
