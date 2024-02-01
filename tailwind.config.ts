@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import tailwindForms from '@tailwindcss/forms';
 
-import { myCustomTheme } from './theme';
+import { myCustomTheme } from './src/lib/theme';
 
 export default {
 	content: [

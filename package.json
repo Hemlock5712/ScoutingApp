@@ -48,6 +48,7 @@
 		"@supabase/auth-ui-shared": "^0.1.8",
 		"@supabase/auth-ui-svelte": "^0.2.8",
 		"@supabase/supabase-js": "^2.39.0",
+		"chart.js": "^4.4.1",
 		"fflate": "^0.8.1",
 		"googleapis": "^129.0.0",
 		"idb": "^8.0.0",
