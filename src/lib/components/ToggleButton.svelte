@@ -8,7 +8,7 @@
 </script>
 
 <button
-	class="btn btn-md variant-outline-success"
+	class="btn btn-lg text-xl variant-outline-success"
 	class:variant-filled-success={value}
 	on:click={() => {
 		value = !value;

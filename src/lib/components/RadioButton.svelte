@@ -26,7 +26,7 @@
 	{#if label !== ''}
 		<p>{label}</p>
 	{/if}
-	<div class="flex flex-row gap-4">
+	<div class="flex flex-row justify-center gap-4">
 		{#each buttons as button, i}
 			<!-- <ToggleButton label={button} bind:value={selected} /> -->
 			<ToggleButton

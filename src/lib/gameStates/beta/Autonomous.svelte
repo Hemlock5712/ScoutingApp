@@ -21,10 +21,12 @@
 	<!-- Components for the page go here -->
 	<HitMiss label="Speaker" bind:hit={$autonomous.speakerHit} bind:miss={$autonomous.speakerMiss} />
 	<HitMiss label="Amp" bind:hit={$autonomous.ampHit} bind:miss={$autonomous.ampMiss} />
-	<div class="grid grid-cols-2 text-3xl">
-		<PlusMinus label="# Picked Up From Middle" bind:value={$autonomous.pickedUpFromMiddle} />
-		<div class="text-center justify-center flex-col">{$autonomous.pickedUpFromMiddle}</div>
-	</div>
+	<PlusMinus
+		label="Picked up from Middle"
+		bind:value={$autonomous.pickedUpFromMiddle}
+		horizontal
+		showValue
+	/>
 	<ToggleButton label="Leave" bind:value={$autonomous.leave} />
 	<RadioButton buttons={['Amp Side', 'Middle', 'Source Side']} />
 </PageLayout>
