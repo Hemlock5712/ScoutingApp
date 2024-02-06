@@ -39,3 +39,16 @@ export const writeRow = async (range: string, values: string[]) => {
 		}
 	});
 };
+
+export const writeBulk = async (range: string, values: string[][]) => {
+	await sheets.spreadsheets.values.append({
+		spreadsheetId: spreadsheetID,
+		range: range,
+		valueInputOption: 'USER_ENTERED',
+		insertDataOption: 'INSERT_ROWS',
+		requestBody: {
+			majorDimension: 'ROWS',
+			values
+		}
+	});
+};

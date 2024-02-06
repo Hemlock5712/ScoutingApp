@@ -4,7 +4,8 @@ export const defaultAutonomous = Object.freeze({
 	speakerMiss: 0,
 	ampHit: 0,
 	ampMiss: 0,
-	pickedUpFromMiddle: 0
+	pickedUpFromMiddle: 0,
+	startLocation: 'AMP'
 });
 
 export type AutonomousState = {
@@ -14,6 +15,7 @@ export type AutonomousState = {
 	ampHit: number;
 	ampMiss: number;
 	pickedUpFromMiddle: number;
+	startLocation: 'AMP' | 'MIDDLE' | 'SOURCE';
 };
 
 export const defaultTeleop = Object.freeze({
@@ -44,7 +46,7 @@ export type TeleopState = {
 	trap: number;
 	trapMiss: number;
 	sourcePickup: boolean;
-	floorPickup: false;
+	floorPickup: boolean;
 	humanPlayerAtAmp: boolean;
 	humanPlayerHighNotesHit: number;
 	humanPlayerHighNotesMiss: number;

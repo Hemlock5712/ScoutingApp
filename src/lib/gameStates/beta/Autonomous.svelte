@@ -28,5 +28,9 @@
 		showValue
 	/>
 	<ToggleButton label="Leave" bind:value={$autonomous.leave} />
-	<RadioButton buttons={['Amp Side', 'Middle', 'Source Side']} />
+	<RadioButton
+		selected={$autonomous.startLocation}
+		buttons={['AMP', 'MIDDLE', 'SOURCE']}
+		buttonText={['Amp Side', 'Middle', 'Source Side']}
+	/>
 </PageLayout>

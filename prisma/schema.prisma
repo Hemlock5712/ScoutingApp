@@ -59,6 +59,7 @@ model Match2024 {
   humanPlayerAtAmp           Boolean
   humanPlayerHighNotesHit    Int
   humanPlayerHighNotesMissed Int
+  autoStartPosition          String
   notes                      String
 
   @@id([eventName, matchNumber, teamNumber])
