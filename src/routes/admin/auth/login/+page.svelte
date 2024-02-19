@@ -10,6 +10,7 @@
 </svelte:head>
 
 <div class="row flex-center flex">
+	<a href="/" class="btn variant-outline-primary">Scouter View</a>
 	<div class="col-6 form-widget">
 		<Auth
 			supabaseClient={data.supabase}

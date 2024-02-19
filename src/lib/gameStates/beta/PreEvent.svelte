@@ -94,4 +94,5 @@
 		}}
 		selected={$scoutedTeam}
 	/>
+	<a href="/admin" class="btn variant-outline-secondary">Match Uploader (Login Required)</a>
 </PageLayout>

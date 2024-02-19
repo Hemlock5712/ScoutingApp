@@ -38,6 +38,8 @@
 	}
 </script>
 
+<a href="/" class="btn variant-outline-primary">Scouter View</a>
+
 {#if session}
 	<div class="w-full flex items-center flex-col">
 		<!-- svelte-ignore a11y-media-has-caption -->

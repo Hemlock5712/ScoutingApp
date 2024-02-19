@@ -11,6 +11,7 @@
 	const dispatch = createEventDispatcher();
 
 	onMount(() => {
+		console.log(selected);
 		if (selected !== '') {
 			const buttonIndex = buttons.indexOf(selected);
 			isButtonSelected[buttonIndex] = true;

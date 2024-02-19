@@ -6,7 +6,7 @@
 		type PopupSettings
 	} from '@skeletonlabs/skeleton';
 	import type { ScheduledMatch } from '$lib/types';
-	import { matchNumber, teamNumber, scheduledMatches } from '$lib/stores';
+	import { matchNumber, teamNumber, scheduledMatches, scoutedTeam } from '$lib/stores';
 	import { get } from 'svelte/store';
 	import { onMount } from 'svelte';
 
@@ -14,6 +14,16 @@
 	export let value: string;
 
 	let teamListForMatch: AutocompleteOption<string>[] = [];
+	let teams: string[] = [];
+
+	const indexToStationMap: { [key: number]: string } = {
+		0: 'Red 1',
+		1: 'Red 2',
+		2: 'Red 3',
+		3: 'Blue 1',
+		4: 'Blue 2',
+		5: 'Blue 3'
+	};
 
 	onMount(() => {
 		const matchesUnsub = scheduledMatches.subscribe((matches) => {
@@ -22,10 +32,11 @@
 				if (match === undefined) {
 					return [];
 				}
-				const teams = [...match.red, ...match.blue];
-				teamListForMatch = teams
-					.sort((a, b) => parseInt(a) - parseInt(b))
-					.map((t) => ({ value: t.toString(), label: t.toString() }));
+				teams = [...match.red, ...match.blue];
+				teamListForMatch = teams.map((t, i) => ({
+					value: t.toString(),
+					label: `${indexToStationMap[i]}: ${t.toString()}`
+				}));
 			});
 
 			return () => {
@@ -37,6 +48,33 @@
 			matchesUnsub();
 		};
 	});
+
+	$: {
+		if (teams.length === 6) {
+			const station = $scoutedTeam;
+
+			switch (station) {
+				case 'red1':
+					teamNumber.set(teams[0]);
+					break;
+				case 'red2':
+					teamNumber.set(teams[1]);
+					break;
+				case 'red3':
+					teamNumber.set(teams[2]);
+					break;
+				case 'blue1':
+					teamNumber.set(teams[3]);
+					break;
+				case 'blue2':
+					teamNumber.set(teams[4]);
+					break;
+				case 'blue3':
+					teamNumber.set(teams[5]);
+					break;
+			}
+		}
+	}
 
 	const popupSettings: PopupSettings = {
 		event: 'focus-click',
