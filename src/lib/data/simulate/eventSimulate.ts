@@ -136,9 +136,6 @@ export class EventSimulator {
 		if (team.robotType === RobotType.Amp) {
 			return [0, 0];
 		}
-		if (team.robotType === RobotType.Chassis) {
-			return [0, 0];
-		}
 		const cycles = autoSpeedMap[team.robotSpeed];
 		const scored = Array(cycles)
 			.fill(false)
@@ -159,9 +156,6 @@ export class EventSimulator {
 				scored.reduce((acc, val) => acc + (val ? 1 : 0), 0),
 				scored.reduce((acc, val) => acc + (val ? 0 : 1), 0)
 			];
-		}
-		if (team.robotType === RobotType.Chassis) {
-			return [0, 0];
 		}
 		return [0, 0];
 	}
@@ -197,7 +191,6 @@ export type Robot = {
 };
 
 export enum RobotType {
-	Chassis = 'Chassis',
 	Amp = 'Amp',
 	Speaker = 'Speaker',
 	Both = 'Both'
@@ -218,14 +211,14 @@ export enum RobotSpeed {
 
 // Maps robot speed to number of cycles per match
 const speedMap = {
-	[RobotSpeed.High]: 12,
-	[RobotSpeed.Medium]: 8,
+	[RobotSpeed.High]: 16,
+	[RobotSpeed.Medium]: 10,
 	[RobotSpeed.Low]: 4
 };
 
 const autoSpeedMap = {
-	[RobotSpeed.High]: 3,
-	[RobotSpeed.Medium]: 2,
+	[RobotSpeed.High]: 5,
+	[RobotSpeed.Medium]: 3,
 	[RobotSpeed.Low]: 1
 };
 

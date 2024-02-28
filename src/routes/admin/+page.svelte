@@ -56,5 +56,11 @@
 	</div>
 {:else}
 	<p>You must be logged in to view this page.</p>
-	<a class="btn btn-lg variant-filled-secondary" href="/admin/auth/login">Login</a>
+	<a
+		class="btn btn-lg variant-filled-secondary"
+		href="/admin/auth/login"
+		on:click={() => {
+			window.location.href = '/admin/auth/login';
+		}}>Login</a
+	>
 {/if}
