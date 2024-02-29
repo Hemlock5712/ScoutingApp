@@ -61,7 +61,7 @@ export const writeData = async (
 		autoStartLocation,
 		notes
 	].map((i) => i?.toString() ?? '');
-	await writeRow('Raw Data!A1:Y1', data);
+	await writeRow('Data Input!A1:Y1', data);
 	if (database) {
 		await writeMatch(matchData);
 	}
@@ -124,5 +124,5 @@ export const writeBulkMatches = async (matches: MatchState<AutonomousState, Tele
 			notes
 		].map((i) => i?.toString() ?? '');
 	});
-	await writeBulk('Raw Data!A1:Y1', data);
+	await writeBulk('Data Input!A1:Y1', data);
 };
