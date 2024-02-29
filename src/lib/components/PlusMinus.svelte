@@ -6,6 +6,8 @@
 	export let label: string;
 	export let showValue: boolean = false;
 	export let horizontal: boolean = false;
+	export let max: number = 200;
+	export let totalCount: number | undefined = undefined;
 
 	const dispatch = createEventDispatcher();
 </script>
@@ -16,9 +18,13 @@
 		<button
 			class="btn btn-xl text-5xl variant-filled-tertiary"
 			on:click={() => {
-				value += 1;
 				dispatch('increment', { value });
-				hapticBuzz();
+				if ((totalCount ?? value) >= max) {
+					hapticInvalid();
+				} else {
+					hapticBuzz();
+					value++;
+				}
 			}}>+</button
 		>
 		{#if showValue}
@@ -27,13 +33,13 @@
 		<button
 			class="btn btn-sm text-4xl variant-filled-primary"
 			on:click={() => {
-				if (value === 0) {
+				if ((totalCount ? totalCount <= 0 : false) || value <= 0) {
 					hapticInvalid();
 				} else {
 					hapticBuzzLong();
+					value--;
 				}
 				dispatch('decrement', { value });
-				value = Math.max(0, value - 1);
 			}}>-</button
 		>
 	</div>
@@ -46,12 +52,13 @@
 			<button
 				class="btn btn-sm text-5xl px-8 variant-filled-primary"
 				on:click={() => {
-					if (value === 0) {
+					if ((totalCount ? totalCount <= 0 : false) || value <= 0) {
 						hapticInvalid();
 					} else {
 						hapticBuzzLong();
+						value--;
 					}
-					value = Math.max(0, value - 1);
+					dispatch('decrement', { value });
 				}}>-</button
 			>
 			{#if showValue}
@@ -62,8 +69,13 @@
 			<button
 				class="btn btn-xl text-5xl px-8 variant-filled-tertiary"
 				on:click={() => {
-					value += 1;
-					hapticBuzz();
+					dispatch('increment', { value });
+					if ((totalCount ?? value) >= max) {
+						hapticInvalid();
+					} else {
+						hapticBuzz();
+						value++;
+					}
 				}}>+</button
 			>
 		</div>

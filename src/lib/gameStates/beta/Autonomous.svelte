@@ -44,6 +44,7 @@
 		bind:value={$autonomous.pickedUpFromMiddle}
 		horizontal
 		showValue
+		max={5}
 	/>
 	<ToggleButton label="Leave" bind:value={$autonomous.leave} />
 	<RadioButton

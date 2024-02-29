@@ -29,6 +29,7 @@
 			label="High Notes on Microphone"
 			bind:hit={$teleop.humanPlayerHighNotesHit}
 			bind:miss={$teleop.humanPlayerHighNotesMiss}
+			max={3}
 		/>
 	{/if}
 	{#if $teleop.climb}
