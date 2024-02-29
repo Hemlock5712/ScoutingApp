@@ -50,3 +50,5 @@ export type TinderTeam = {
 	endgameClimbPercent: TinderStatistic;
 	trap: TinderStatistic;
 };
+
+export type ButtonVariants = 'success' | 'primary' | 'secondary' | 'tertiary' | 'warning' | 'error';

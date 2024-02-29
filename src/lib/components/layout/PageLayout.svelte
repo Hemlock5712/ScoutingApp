@@ -17,7 +17,7 @@
 </script>
 
 <div class="h-full gap-2 flex flex-col">
-	<div class="overflow-y-scroll flex flex-col flex-grow gap-2">
+	<div class="overflow-y-scroll flex flex-col flex-grow gap-2 pt-2">
 		<slot />
 	</div>
 	{#if nextPage}

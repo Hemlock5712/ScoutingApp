@@ -2,12 +2,11 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PageLayout from '$lib/components/layout/PageLayout.svelte';
 	import { MatchPhase, type ScheduledMatch } from '$lib/types';
-	import { scheduledMatches, scoutedTeam } from '$lib/stores';
+	import { scheduledMatches } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { clearStore } from '$lib/data/webMatchStorage';
 	import ConfirmButton from '$lib/components/ConfirmButton.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	import RadioButton from '../../components/RadioButton.svelte';
 
 	let serverEventCode = '';
 	let text = '';
@@ -86,13 +85,5 @@
 			});
 		}}>Pull match schedule</button
 	>
-	<RadioButton
-		buttons={['red1', 'red2', 'red3', 'blue1', 'blue2', 'blue3']}
-		buttonText={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']}
-		on:select={(e) => {
-			scoutedTeam.set(e.detail.value);
-		}}
-		selected={$scoutedTeam}
-	/>
 	<a href="/admin" class="btn variant-outline-secondary">Match Uploader (Login Required)</a>
 </PageLayout>

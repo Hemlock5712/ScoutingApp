@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 	import ToggleButton from './ToggleButton.svelte';
+	import type { ButtonVariants } from '../types';
 
 	export let label: string = '';
 	export let buttons: string[] = [];
 	export let buttonText: string[] = buttons;
+	export let buttonColors: ButtonVariants[] = buttons.map(() => 'primary');
 	let isButtonSelected: boolean[] = buttons.map(() => false);
 	export let selected: string = '';
 
@@ -33,6 +35,7 @@
 			<ToggleButton
 				label={buttonText[i]}
 				value={isButtonSelected[i]}
+				color={buttonColors[i]}
 				on:toggled={(value) => {
 					isButtonSelected = isButtonSelected.map(() => false);
 					isButtonSelected[i] = value.detail.value;
