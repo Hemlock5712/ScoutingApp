@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { hapticBuzz, hapticBuzzLong, hapticInvalid } from '$lib/haptic';
+	import { createEventDispatcher } from 'svelte';
 
 	export let value: number;
 	export let label: string;
 	export let showValue: boolean = false;
 	export let horizontal: boolean = false;
+
+	const dispatch = createEventDispatcher();
 </script>
 
 {#if !horizontal}
@@ -14,6 +17,7 @@
 			class="btn btn-xl text-5xl variant-filled-tertiary"
 			on:click={() => {
 				value += 1;
+				dispatch('increment', { value });
 				hapticBuzz();
 			}}>+</button
 		>
@@ -28,6 +32,7 @@
 				} else {
 					hapticBuzzLong();
 				}
+				dispatch('decrement', { value });
 				value = Math.max(0, value - 1);
 			}}>-</button
 		>
