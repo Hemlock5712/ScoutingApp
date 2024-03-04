@@ -37,9 +37,11 @@
 				value={isButtonSelected[i]}
 				color={buttonColors[i]}
 				on:toggled={(value) => {
-					isButtonSelected = isButtonSelected.map(() => false);
-					isButtonSelected[i] = value.detail.value;
-					dispatch('select', { value: button });
+					if (value.detail.value === true) {
+						isButtonSelected = isButtonSelected.map(() => false);
+						isButtonSelected[i] = true;
+						dispatch('select', { value: button });
+					}
 				}}
 			/>
 		{/each}
