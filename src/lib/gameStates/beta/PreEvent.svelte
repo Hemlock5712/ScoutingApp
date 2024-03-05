@@ -86,4 +86,5 @@
 		}}>Pull match schedule</button
 	>
 	<a href="/admin" class="btn variant-outline-secondary">Match Uploader (Login Required)</a>
+	<a href="/repair" class="btn variant-filled-surface">Reupload Matches</a>
 </PageLayout>

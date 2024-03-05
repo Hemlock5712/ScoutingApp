@@ -16,7 +16,7 @@
 	});
 </script>
 
-<PageHeader headerText="Reupload matches" hideMatchInfo />
+<PageHeader headerText="Reupload matches" previousPageLink="/" />
 <PageLayout>
 	{#each scoutedMatches as match}
 		<MatchQrCode {match} />

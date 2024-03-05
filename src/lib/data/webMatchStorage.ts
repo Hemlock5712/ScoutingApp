@@ -40,14 +40,18 @@ export async function addMatchToStore({
 	}
 	const db = await useDB();
 
-	await db.add('match2024', {
+	const matchData = {
 		matchKey: `${teamNumber}-${matchNumber}`,
 		teamNumber,
 		matchNumber,
 		scouterName,
 		autonomous,
 		teleop
-	});
+	};
+
+	console.log('Adding match to store:', matchData);
+
+	await db.add('match2024', matchData);
 }
 
 export async function getMatchFromStore(matchKey: string) {

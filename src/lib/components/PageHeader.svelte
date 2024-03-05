@@ -8,6 +8,8 @@
 	export let previousPage: MatchPhase | undefined = undefined;
 	export let nextPage: MatchPhase | undefined = undefined;
 
+	export let previousPageLink: string | undefined = undefined;
+
 	const matchPhaseStringMap = {
 		[MatchPhase.PreEvent]: 'Pre-Event',
 		[MatchPhase.PreMatch]: 'Setup',
@@ -36,6 +38,11 @@
 			>
 				{matchPhaseStringMap[previousPage]}
 			</button>
+		{/if}
+		{#if previousPageLink !== undefined}
+			<a href={previousPageLink}>
+				<button class="btn btn-md variant-outline-tertiary whitespace-break-spaces">Scout</button>
+			</a>
 		{/if}
 	</div>
 	<div id="header-text" class="flex flex-col text-center col-span-2 justify-center">
