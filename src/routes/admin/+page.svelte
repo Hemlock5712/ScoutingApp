@@ -33,10 +33,6 @@
 	});
 
 	async function sendToServer() {
-		const data = await fetch('/admin/api/upload', {
-			method: 'POST',
-			body: JSON.stringify(scannedData)
-		});
 		addMatchToStore({
 			teamNumber: scannedData.teamNumber,
 			matchNumber: scannedData.matchNumber,
@@ -44,6 +40,10 @@
 			autonomous: scannedData.autonomous,
 			teleop: scannedData.teleop,
 			uploader: true
+		});
+		const data = await fetch('/admin/api/upload', {
+			method: 'POST',
+			body: JSON.stringify(scannedData)
 		});
 		console.log(data.status);
 		if (data.status === 200) {
