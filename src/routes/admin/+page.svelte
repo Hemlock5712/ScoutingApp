@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { addMatchToStore } from '../../lib/data/webMatchStorage.js';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { Confetti } from 'svelte-confetti';
 
 	let videoRef: HTMLVideoElement;
 	let scannedData: any;
@@ -12,6 +13,9 @@
 	let { supabase, session } = data;
 
 	const toastStore = getToastStore();
+
+	let showConfetti = false;
+	const confettiDuration = 2000;
 
 	onMount(() => {
 		const scanner = new QrScanner(
@@ -51,6 +55,10 @@
 				message: `Match ${scannedData.matchNumber} for team ${scannedData.teamNumber} uploaded successfully!`,
 				background: 'bg-green-500'
 			});
+			showConfetti = true;
+			setTimeout(() => {
+				showConfetti = false;
+			}, confettiDuration);
 		} else {
 			toastStore.trigger({
 				message: `Failed to upload match ${scannedData.matchNumber} for team ${scannedData.teamNumber}! Data is saved to your device for uploading later.`,
@@ -79,6 +87,23 @@
     </pre>
 		{/if}
 	</div>
+	{#if showConfetti}
+		<div
+			style="position: fixed;
+	bottom: 0px;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	pointer-events: none;"
+		>
+			<Confetti duration={confettiDuration} xSpread={1} size={15} amount={100} noGravity />
+		</div>
+	{/if}
 {:else}
 	<p>You must be logged in to view this page.</p>
 	<a
