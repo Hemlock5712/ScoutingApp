@@ -21,7 +21,7 @@ export async function POST({ request, locals: { supabase, getSession } }) {
 
 	const match = await request.json();
 
-	const writtenData = await writeData(match);
+	const writtenData = await writeData(match, false);
 
 	return json(writtenData);
 }
