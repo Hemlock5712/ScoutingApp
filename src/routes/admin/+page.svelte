@@ -3,12 +3,15 @@
 	import QrScanner from 'qr-scanner';
 	import { onMount } from 'svelte';
 	import { addMatchToStore } from '../../lib/data/webMatchStorage.js';
+	import { getToastStore } from '@skeletonlabs/skeleton';
 
 	let videoRef: HTMLVideoElement;
 	let scannedData: any;
 
 	export let data;
 	let { supabase, session } = data;
+
+	const toastStore = getToastStore();
 
 	onMount(() => {
 		const scanner = new QrScanner(
@@ -43,12 +46,25 @@
 			uploader: true
 		});
 		console.log(data.status);
+		if (data.status === 200) {
+			toastStore.trigger({
+				message: `Match ${scannedData.matchNumber} for team ${scannedData.teamNumber} uploaded successfully!`,
+				background: 'bg-green-500'
+			});
+		} else {
+			toastStore.trigger({
+				message: `Failed to upload match ${scannedData.matchNumber} for team ${scannedData.teamNumber}! Data is saved to your device for uploading later.`,
+				background: 'bg-red-500'
+			});
+		}
 		scannedData = undefined;
 	}
 </script>
 
-<a href="/" class="btn variant-outline-primary">Scouter View</a>
-
+<div class="flex flex-row">
+	<a href="/" class="btn variant-outline-primary">Scouter View</a>
+	<a href="/admin/reupload" class="btn variant-outline-primary">Reupload</a>
+</div>
 {#if session}
 	<div class="w-full flex items-center flex-col">
 		<!-- svelte-ignore a11y-media-has-caption -->

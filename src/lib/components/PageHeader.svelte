@@ -9,6 +9,7 @@
 	export let nextPage: MatchPhase | undefined = undefined;
 
 	export let previousPageLink: string | undefined = undefined;
+	export let previousPageText: string | undefined = undefined;
 
 	const matchPhaseStringMap = {
 		[MatchPhase.PreEvent]: 'Pre-Event',
@@ -41,7 +42,9 @@
 		{/if}
 		{#if previousPageLink !== undefined}
 			<a href={previousPageLink}>
-				<button class="btn btn-md variant-outline-tertiary whitespace-break-spaces">Scout</button>
+				<button class="btn btn-md variant-outline-tertiary whitespace-break-spaces"
+					>{previousPageText ?? 'Scout'}</button
+				>
 			</a>
 		{/if}
 	</div>
