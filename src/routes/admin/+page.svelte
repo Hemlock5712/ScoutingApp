@@ -2,6 +2,7 @@
 	import { gunzipSync, strFromU8, strToU8 } from 'fflate';
 	import QrScanner from 'qr-scanner';
 	import { onMount } from 'svelte';
+	import { addMatchToStore } from '../../lib/data/webMatchStorage.js';
 
 	let videoRef: HTMLVideoElement;
 	let scannedData: any;
@@ -32,6 +33,14 @@
 		const data = await fetch('/admin/api/upload', {
 			method: 'POST',
 			body: JSON.stringify(scannedData)
+		});
+		addMatchToStore({
+			teamNumber: scannedData.teamNumber,
+			matchNumber: scannedData.matchNumber,
+			scouterName: scannedData.scouterName,
+			autonomous: scannedData.autonomous,
+			teleop: scannedData.teleop,
+			uploader: true
 		});
 		console.log(data.status);
 		scannedData = undefined;
