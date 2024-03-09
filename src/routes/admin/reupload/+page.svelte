@@ -37,7 +37,7 @@
 	}
 </script>
 
-<PageHeader headerText="Reupload matches" previousPageLink="/" previousPageText="Scan" />
+<PageHeader headerText="Reupload matches" previousPageLink="/admin" previousPageText="Scan" />
 <PageLayout>
 	<div class="grid grid-cols-3 gap-4">
 		{#each scannedMatches as match}
