@@ -10,7 +10,8 @@ const usersWhoCanUpload: string[] = [
 	'9af0ddf3-2cd7-4d55-b46b-57f501fbeedf', // Lydia
 	'a00462b1-51d7-4332-b79c-31676384154d', // Joel
 	'dfef77a6-40c5-4942-9294-e2788c79fa7b', // Sam
-	'69f8093e-e4be-41c1-b1ab-228f98c94c23' // Morgan
+	'69f8093e-e4be-41c1-b1ab-228f98c94c23', // Morgan
+	'44c4bb1e-7523-4011-8a77-42ad478185e0' // Will
 ];
 
 export async function POST({ request, locals: { supabase, getSession } }) {
