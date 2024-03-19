@@ -1,5 +1,5 @@
 import { openDB } from 'idb';
-import type { AutonomousState, TeleopState } from '../game';
+import type { AutonomousState, Intangibles, TeleopState } from '../game';
 
 export type MatchStorage = {
 	matchKey: string;
@@ -38,6 +38,7 @@ export async function addMatchToStore({
 	scouterName,
 	autonomous,
 	teleop,
+	intangibles,
 	uploader = false
 }: {
 	teamNumber: string;
@@ -45,6 +46,7 @@ export async function addMatchToStore({
 	scouterName: string;
 	autonomous: AutonomousState;
 	teleop: TeleopState;
+	intangibles: Intangibles;
 	uploader?: boolean;
 }) {
 	if (matchNumber === '-1') {
@@ -59,7 +61,8 @@ export async function addMatchToStore({
 		matchNumber,
 		scouterName,
 		autonomous,
-		teleop
+		teleop,
+		intangibles
 	};
 
 	console.log('Adding match to store:', matchData);

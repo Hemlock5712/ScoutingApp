@@ -10,10 +10,11 @@
 		scouterName,
 		autonomous,
 		teleop,
-		matchPhase
+		matchPhase,
+		intangibles
 	} from '$lib/stores';
 	import { onMount } from 'svelte';
-	import { defaultAutonomous, defaultTeleop } from '../../game';
+	import { defaultAutonomous, defaultIntangibles, defaultTeleop } from '../../game';
 	import { addMatchToStore } from '$lib/data/webMatchStorage';
 
 	let qrData: string | undefined;
@@ -25,14 +26,16 @@
 			matchNumber: $matchNumber,
 			scouterName: $scouterName,
 			autonomous: $autonomous,
-			teleop: $teleop
+			teleop: $teleop,
+			intangibles: $intangibles
 		});
 		addMatchToStore({
 			teamNumber: $teamNumber,
 			matchNumber: $matchNumber,
 			scouterName: $scouterName,
 			autonomous: $autonomous,
-			teleop: $teleop
+			teleop: $teleop,
+			intangibles: $intangibles
 		});
 		setTimeout(() => {
 			canContinue = true;
@@ -48,6 +51,7 @@
 		// Reset state back to default state
 		autonomous.set({ ...defaultAutonomous });
 		teleop.set({ ...defaultTeleop });
+		intangibles.set({ ...defaultIntangibles });
 		// Increase match number by 1
 		matchNumber.update((n) => (parseInt(n) + 1).toString());
 		// Clear team number

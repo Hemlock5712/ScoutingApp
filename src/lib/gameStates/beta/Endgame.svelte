@@ -5,7 +5,7 @@
 	import ToggleButton from '$lib/components/ToggleButton.svelte';
 
 	import { MatchPhase } from '$lib/types';
-	import { teleop } from '$lib/stores';
+	import { teleop, intangibles } from '$lib/stores';
 	import RadioButton from '$lib/components/RadioButton.svelte';
 	import TextArea from '$lib/components/TextArea.svelte';
 </script>
@@ -35,5 +35,12 @@
 	{#if $teleop.climb}
 		<ToggleButton label="Harmony" bind:value={$teleop.harmony} />
 	{/if}
+	<p>Intangibles</p>
+	<div class="flex flex-row flex-wrap justify-center gap-4">
+		<ToggleButton label="Lost Communication" bind:value={$intangibles.lostCommunication} />
+		<ToggleButton label="Note Got Stuck" bind:value={$intangibles.noteGotStuck} />
+		<ToggleButton label="Robot Broke" bind:value={$intangibles.robotBroke} />
+		<ToggleButton label="Got 3+ Penalties" bind:value={$intangibles.penaltyMagnet} />
+	</div>
 	<TextArea title="Notes" bind:value={$teleop.notes} />
 </PageLayout>

@@ -1,9 +1,12 @@
+import type { Intangibles } from "./game";
+
 export type MatchState<Auton, Tele> = {
 	matchNumber: string | undefined;
 	teamNumber: string | undefined;
 	scouterName: string;
 	autonomous: Auton;
 	teleop: Tele;
+	intangibles: Intangibles;
 };
 
 export enum MatchPhase {

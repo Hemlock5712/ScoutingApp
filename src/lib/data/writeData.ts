@@ -7,7 +7,7 @@ export const writeData = async (
 	matchData: MatchState<AutonomousState, TeleopState>,
 	database: boolean = true
 ) => {
-	const { autonomous, teleop, matchNumber, scouterName, teamNumber } = matchData;
+	const { autonomous, teleop, intangibles, matchNumber, scouterName, teamNumber } = matchData;
 	const {
 		ampHit: autoAmpHit,
 		ampMiss: autoAmpMiss,
@@ -34,6 +34,7 @@ export const writeData = async (
 		humanPlayerHighNotesMiss,
 		notes
 	} = teleop;
+	const { lostCommunication, robotBroke, penaltyMagnet, noteGotStuck } = intangibles;
 	const data = [
 		matchNumber,
 		teamNumber,
@@ -59,6 +60,10 @@ export const writeData = async (
 		sourcePickup,
 		floorPickup,
 		autoStartLocation,
+		lostCommunication,
+		robotBroke,
+		penaltyMagnet,
+		noteGotStuck,
 		notes
 	].map((i) => i?.toString() ?? '');
 	await writeRow('Data Input!A1:Y1', data);

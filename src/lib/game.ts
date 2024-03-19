@@ -53,3 +53,17 @@ export type TeleopState = {
 	harmony: boolean;
 	notes: string;
 };
+
+export const defaultIntangibles = Object.freeze({
+	penaltyMagnet: false,
+	robotBroke: false,
+	lostCommunication: false,
+	noteGotStuck: false
+});
+
+export type Intangibles = {
+	penaltyMagnet: boolean;
+	robotBroke: boolean;
+	lostCommunication: boolean;
+	noteGotStuck: boolean;
+};
