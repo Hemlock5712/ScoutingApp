@@ -20,7 +20,7 @@
 			teleop.set({
 				...$teleop,
 				climb: event.detail.value === 'Climb',
-				park: event.detail.value === 'Park' || event.detail.value === 'Climb'
+				park: event.detail.value === 'Park'
 			});
 		}}
 	/>

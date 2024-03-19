@@ -19,6 +19,16 @@
 <PageHeader headerText="Autonomous" previousPage={MatchPhase.PreMatch} />
 <PageLayout nextPage={MatchPhase.Teleop}>
 	<!-- Components for the page go here -->
+	<RadioButton
+		label="Starting Location"
+		selected={$autonomous.startLocation}
+		buttons={['AMP', 'MIDDLE', 'SOURCE']}
+		buttonText={['Amp Side', 'Middle', 'Source Side']}
+		on:select={(event) => {
+			console.log(event.detail.value);
+			autonomous.set({ ...$autonomous, startLocation: event.detail.value });
+		}}
+	/>
 	<HitMiss
 		label="Speaker"
 		bind:hit={$autonomous.speakerHit}
@@ -47,9 +57,4 @@
 		max={5}
 	/>
 	<ToggleButton label="Leave" bind:value={$autonomous.leave} />
-	<RadioButton
-		selected={$autonomous.startLocation}
-		buttons={['AMP', 'MIDDLE', 'SOURCE']}
-		buttonText={['Amp Side', 'Middle', 'Source Side']}
-	/>
 </PageLayout>

@@ -12,6 +12,7 @@
 	onMount(async () => {
 		const matches = await getAllMatchesFromStore();
 		console.log(matches);
+		matches.sort((a, b) => parseInt(a.matchNumber) - parseInt(b.matchNumber));
 		scoutedMatches = matches;
 	});
 </script>

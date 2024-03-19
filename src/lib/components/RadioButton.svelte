@@ -27,7 +27,7 @@
 
 <div class="flex flex-col gap-2">
 	{#if label !== ''}
-		<p>{label}</p>
+		<p class="text-center text-lg">{label}</p>
 	{/if}
 	<div class="flex flex-row justify-center gap-4">
 		{#each buttons as button, i}
@@ -37,6 +37,7 @@
 				value={isButtonSelected[i]}
 				color={buttonColors[i]}
 				on:toggled={(value) => {
+					console.log(value);
 					if (value.detail.value === true) {
 						isButtonSelected = isButtonSelected.map(() => false);
 						isButtonSelected[i] = true;
