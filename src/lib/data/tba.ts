@@ -26,9 +26,6 @@ const EventMatches = z.array(
 		}),
 		winning_alliance: z.string(),
 		event_key: z.string(),
-		time: z.number(),
-		predicted_time: z.number(),
-		actual_time: z.number()
 	})
 );
 
