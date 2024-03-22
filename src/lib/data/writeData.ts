@@ -34,7 +34,12 @@ export const writeData = async (
 		humanPlayerHighNotesMiss,
 		notes
 	} = teleop;
-	const { lostCommunication, robotBroke, penaltyMagnet, noteGotStuck } = intangibles;
+	const { lostCommunication, robotBroke, penaltyMagnet, noteGotStuck } = intangibles ?? {
+		lostCommunication: false,
+		robotBroke: false,
+		penaltyMagnet: false,
+		noteGotStuck: false
+	};
 	const data = [
 		matchNumber,
 		teamNumber,

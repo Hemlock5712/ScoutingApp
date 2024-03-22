@@ -43,6 +43,12 @@
 			scouterName: scannedData.scouterName,
 			autonomous: scannedData.autonomous,
 			teleop: scannedData.teleop,
+			intangibles: scannedData.intangibles ?? {
+				lostCommunication: false,
+				noteGotStuck: false,
+				penaltyMagnet: false,
+				robotBroke: false
+			},
 			uploader: true
 		});
 		const data = await fetch('/admin/api/upload', {
