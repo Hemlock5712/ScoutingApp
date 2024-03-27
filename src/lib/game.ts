@@ -33,6 +33,7 @@ export const defaultTeleop = Object.freeze({
 	humanPlayerAtAmp: false,
 	humanPlayerHighNotesHit: 0,
 	humanPlayerHighNotesMiss: 0,
+	passedNotes: 0,
 	notes: ''
 });
 
@@ -51,6 +52,7 @@ export type TeleopState = {
 	humanPlayerHighNotesHit: number;
 	humanPlayerHighNotesMiss: number;
 	harmony: boolean;
+	passedNotes: number;
 	notes: string;
 };
 

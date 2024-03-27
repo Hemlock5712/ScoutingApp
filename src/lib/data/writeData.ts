@@ -32,6 +32,7 @@ export const writeData = async (
 		humanPlayerAtAmp,
 		humanPlayerHighNotesHit,
 		humanPlayerHighNotesMiss,
+		passedNotes,
 		notes
 	} = teleop;
 	const { lostCommunication, robotBroke, penaltyMagnet, noteGotStuck } = intangibles ?? {
@@ -69,6 +70,7 @@ export const writeData = async (
 		robotBroke,
 		penaltyMagnet,
 		noteGotStuck,
+		passedNotes ?? 0,
 		notes
 	].map((i) => i?.toString() ?? '');
 	await writeRow('Data Input!A1:Y1', data);
