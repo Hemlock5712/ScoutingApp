@@ -9,6 +9,8 @@
 
 	export let buttonText: string;
 
+	export let variant: string = 'variant-filled-warning';
+
 	const popupSettings: PopupSettings = {
 		event: 'focus-click',
 		target: 'popupConfirmDialog',
@@ -16,7 +18,7 @@
 	};
 </script>
 
-<button class="btn btn-lg variant-filled-warning" use:popup={popupSettings}>{buttonText}</button>
+<button class={`btn btn-lg ${variant}`} use:popup={popupSettings}>{buttonText}</button>
 <div data-popup="popupConfirmDialog" class="card max-w-xs p-4 shadow-xl">
 	<div class="flex flex-col gap-4">
 		<p>

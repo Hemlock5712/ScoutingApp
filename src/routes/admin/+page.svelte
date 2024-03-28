@@ -2,9 +2,14 @@
 	import { gunzipSync, strFromU8, strToU8 } from 'fflate';
 	import QrScanner from 'qr-scanner';
 	import { onMount } from 'svelte';
-	import { addMatchToStore } from '../../lib/data/webMatchStorage.js';
-	import { getToastStore } from '@skeletonlabs/skeleton';
+	import {
+		addMatchToStore,
+		getMatchFromStore,
+		updateMatchInStore
+	} from '../../lib/data/webMatchStorage.js';
+	import { SlideToggle, getToastStore } from '@skeletonlabs/skeleton';
 	import { Confetti } from 'svelte-confetti';
+	import offlineMode from '../../lib/stores/offline.js';
 
 	let videoRef: HTMLVideoElement;
 	let scannedData: any;
@@ -49,35 +54,59 @@
 				penaltyMagnet: false,
 				robotBroke: false
 			},
+			uploaded: false,
 			uploader: true
 		});
-		const data = await fetch('/admin/api/upload', {
-			method: 'POST',
-			body: JSON.stringify(scannedData)
-		});
-		console.log(data.status);
-		if (data.status === 200) {
-			toastStore.trigger({
-				message: `Match ${scannedData.matchNumber} for team ${scannedData.teamNumber} uploaded successfully!`,
-				background: 'bg-green-500'
+		console.log($offlineMode);
+		if (!$offlineMode) {
+			const data = await fetch('/admin/api/upload', {
+				method: 'POST',
+				body: JSON.stringify(scannedData)
 			});
-			showConfetti = true;
-			setTimeout(() => {
-				showConfetti = false;
-			}, confettiDuration);
+			console.log(data.status);
+			if (data.status === 200) {
+				toastStore.trigger({
+					message: `Match ${scannedData.matchNumber} for team ${scannedData.teamNumber} uploaded successfully!`,
+					background: 'bg-green-500'
+				});
+
+				const match = await getMatchFromStore(scannedData.teamNumber, scannedData.matchNumber);
+				if (match) {
+					updateMatchInStore({
+						...match,
+						uploaded: true,
+						uploader: true
+					});
+				}
+				showConfetti = true;
+				setTimeout(() => {
+					showConfetti = false;
+				}, confettiDuration);
+			} else {
+				toastStore.trigger({
+					message: `Failed to upload match ${scannedData.matchNumber} for team ${scannedData.teamNumber}! Data is saved to your device for uploading later.`,
+					background: 'bg-red-500'
+				});
+			}
 		} else {
 			toastStore.trigger({
-				message: `Failed to upload match ${scannedData.matchNumber} for team ${scannedData.teamNumber}! Data is saved to your device for uploading later.`,
-				background: 'bg-red-500'
+				message: `Offline mode selected. Match ${scannedData.matchNumber} for team ${scannedData.teamNumber} saved to device for uploading later.`,
+				background: 'bg-yellow-500'
 			});
 		}
 		scannedData = undefined;
 	}
 </script>
 
-<div class="flex flex-row">
-	<a href="/" class="btn variant-outline-primary">Scouter View</a>
-	<a href="/admin/reupload" class="btn variant-outline-primary">Reupload</a>
+<div class="flex flex-col items-center mb-4">
+	<div class="flex flex-row">
+		<a href="/" class="btn variant-outline-primary">Scouter View</a>
+		<a href="/admin/reupload" class="btn variant-outline-primary">Reupload</a>
+	</div>
+	<div class="flex flex-row gap-4 items-center">
+		<p>Offline Mode</p>
+		<SlideToggle bind:checked={$offlineMode} name="offline" label="Offline Mode" />
+	</div>
 </div>
 {#if session}
 	<div class="w-full flex items-center flex-col">

@@ -8,6 +8,8 @@ export type MatchStorage = {
 	scouterName: string;
 	autonomous: AutonomousState;
 	teleop: TeleopState;
+	intangibles: Intangibles;
+	uploaded: boolean;
 };
 
 async function useDB() {
@@ -39,6 +41,7 @@ export async function addMatchToStore({
 	autonomous,
 	teleop,
 	intangibles,
+	uploaded = false,
 	uploader = false
 }: {
 	teamNumber: string;
@@ -47,6 +50,7 @@ export async function addMatchToStore({
 	autonomous: AutonomousState;
 	teleop: TeleopState;
 	intangibles: Intangibles;
+	uploaded?: boolean;
 	uploader?: boolean;
 }) {
 	if (matchNumber === '-1') {
@@ -62,12 +66,54 @@ export async function addMatchToStore({
 		scouterName,
 		autonomous,
 		teleop,
+		uploaded,
 		intangibles
 	};
 
 	console.log('Adding match to store:', matchData);
 
 	await db.add('match2024', matchData);
+}
+
+export async function updateMatchInStore({
+	teamNumber,
+	matchNumber,
+	scouterName,
+	autonomous,
+	teleop,
+	intangibles,
+	uploaded = false,
+	uploader = false
+}: {
+	teamNumber: string;
+	matchNumber: string;
+	scouterName: string;
+	autonomous: AutonomousState;
+	teleop: TeleopState;
+	intangibles: Intangibles;
+	uploaded?: boolean;
+	uploader?: boolean;
+}) {
+	if (matchNumber === '-1') {
+		console.warn('No match number set, ignoring this match.');
+		return;
+	}
+	const db = uploader ? await useScannerDB() : await useDB();
+
+	const matchData = {
+		matchKey: `${teamNumber}-${matchNumber}`,
+		teamNumber,
+		matchNumber,
+		scouterName,
+		autonomous,
+		teleop,
+		uploaded,
+		intangibles
+	};
+
+	console.log('Updating match in store:', matchData);
+
+	await db.put('match2024', matchData);
 }
 
 export async function getMatchFromStore(matchKey: string, uploader: boolean = false) {
