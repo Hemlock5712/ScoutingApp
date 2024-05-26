@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Match2022 {
+  eventName        String  @default("")
+  matchNumber      Int
+  teamNumber       Int
+  scouterName      String
+  autoTaxi         Boolean
+  autoLow          Int
+  autoLowMissed    Int
+  autoHigh         Int
+  autoHighMissed   Int
+  teleopLow        Int
+  teleopLowMissed  Int
+  teleopHigh       Int
+  teleopHighMissed Int
+  climbAttempt     Boolean
+  climbLow         Boolean
+  climbMid         Boolean
+  climbHigh        Boolean
+  climbTraverse    Boolean
+  climbTime        Float?
+
+  @@id([eventName, matchNumber, teamNumber])
+}
+
+model Match2024 {
+  eventName                  String  @default("")
+  matchNumber                Int
+  teamNumber                 Int
+  scouterName                String
+  autoAmpHit                 Int
+  autoAmpMissed              Int
+  autoSpeakerHit             Int
+  autoSpeakerMissed          Int
+  autoLeave                  Boolean
+  autoPickedUpFromMiddle     Int
+  teleSpeakerHit             Int
+  teleSpeakerMissed          Int
+  teleAmpHit                 Int
+  teleAmpMissed              Int
+  climb                      Boolean
+  park                       Boolean
+  harmony                    Boolean
+  trap                       Int
+  trapMiss                   Int
+  sourcePickup               Boolean
+  floorPickup                Boolean
+  humanPlayerAtAmp           Boolean
+  humanPlayerHighNotesHit    Int
+  humanPlayerHighNotesMissed Int
+  autoStartPosition          String
+  notes                      String
+
+  @@id([eventName, matchNumber, teamNumber])
+}

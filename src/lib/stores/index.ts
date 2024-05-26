@@ -4,3 +4,6 @@ export { default as teamNumber } from './teamNumber';
 export { default as matchPhase } from './matchPhase';
 export { default as autonomous } from './autonomous';
 export { default as teleop } from './teleop';
+export { default as scheduledMatches } from './schedule';
+export { default as scoutedTeam } from './scoutedTeam';
+export { default as intangibles } from './intangibles';
